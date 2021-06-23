@@ -51,7 +51,7 @@ func (t *timeT2) update() {
 	for {
 		n := time.Now()
 		nt := n.UnixNano() / 1e6
-		if nt >= t.last+20 {
+		if nt >= t.last+20 || nt <= t.last-20 {
 			t.last = nt
 			atomic.StoreInt64(t.nano, n.UnixNano())
 			atomic.StoreInt64(t.ms, nt)
